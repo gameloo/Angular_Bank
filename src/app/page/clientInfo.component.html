@@ -1,0 +1,51 @@
+<input type="button" value="Сохранить изменения" class="btn btn-success" (click)="saveChanges()" />
+<div  class="form-group">
+
+    <label for="fullName">ФИО</label>
+    <div  class="form-group" id="fullName">
+        <input type="string" [(ngModel)]="client.lastName" class="form-control" placeholder="Фамилия"/><br />
+        <input type="string" [(ngModel)]="client.firstName" class="form-control" placeholder="Имя"/><br />
+        <input type="string" [(ngModel)]="client.patronymic" class="form-control" placeholder="Отчество"/><br />
+    </div>
+   
+    <label for="passportData">Паспортные данные</label>
+    <div  class="form-group" id="passportData">
+        <input type="number" [(ngModel)]="client.passportID" class="form-control" placeholder="Номер паспорта"/><br />
+    </div>
+
+    <label for="formDOB">Дата рождения</label>
+    <div class="form-group" id="formDOB">
+        <input type="date" class="form1"  
+            [(ngModel)]="dob" 
+            value="{{dob | date:MM/dd/yyyy}}"
+            validatedateformat 
+            data-date-format="mm/dd/yyyy"
+            calendar 
+            maxdate="todays"
+        />
+    </div>
+
+    <td>{{ dob |  date: 'dd/MM/yyyy'}}</td> <br />
+    
+    <label for="group">Группа риска</label>
+    <select class="form-control" id="group"
+        required [(ngModel)]="selectedGroup"
+        #power="ngModel">
+        <option *ngFor="let group of groups" [value]="group.id">{{group.number}}</option>
+    </select><br />
+
+    <label for="historyChange">История изменеия группы риска</label>
+    <table class="table table-striped" id = "historyChange">
+        <thead>
+            <tr>
+                <td>Группа риска</td>
+                <td>Дата</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of history">
+                <td>{{event.group.number}}</td>
+                <td>{{event.date | date: 'dd/MM/yyyy'}}</td>               
+            </tr>
+        </tbody>
+    </table>

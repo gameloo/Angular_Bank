@@ -1,0 +1,33 @@
+<input type="button" value="Сохранить" class="btn btn-success" (click)="save()" />
+<div  class="form-group">
+
+    <label for="fullName">ФИО</label>
+    <div  class="form-group" id="fullName">
+        <input type="string" [(ngModel)]="client.lastName" class="form-control" placeholder="Фамилия"/><br />
+        <input type="string" [(ngModel)]="client.firstName" class="form-control" placeholder="Имя"/><br />
+        <input type="string" [(ngModel)]="client.patronymic" class="form-control" placeholder="Отчество"/><br />
+    </div>
+   
+    <label for="passportData">Паспортные данные</label>
+    <div  class="form-group" id="passportData">
+        <input type="number" [(ngModel)]="client.passportID" class="form-control" placeholder="Номер паспорта"/><br />
+    </div>
+
+    <label for="formDOB">Дата рождения</label>
+    <div class="form-group" id="formDOB">
+        <input type="date" class="form1"  
+            [(ngModel)]="dob" 
+            value="{{dob | date:MM/dd/yyyy}}"
+            validatedateformat 
+            data-date-format="mm/dd/yyyy"
+            calendar 
+            maxdate="todays"
+        />
+    </div>
+
+    <label for="group">Группа риска</label>
+    <select class="form-control" id="group"
+        required [(ngModel)]="selectedGroup"
+        #power="ngModel">
+        <option *ngFor="let group of groups" [value]="group.id">{{group.number}}</option>
+    </select><br />
